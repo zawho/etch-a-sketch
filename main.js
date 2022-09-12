@@ -10,21 +10,28 @@ gridContainer.appendChild(docFragment);
 const allTiles = document.querySelectorAll('.grid-tile');
 
 //Hover event loop.
-for (let i = 0; i < allTiles.length; i++) {
-    allTiles[i].addEventListener('mouseover', function() {
-        allTiles[i].style.backgroundColor = 'black';
-    });
+function colorTiles() {
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].addEventListener('mouseover', function(e) {
+            if (e.buttons === 1) {
+                allTiles[i].style.backgroundColor = 'black';
+            }
+        });
+        allTiles[i].addEventListener('click', function(e) {
+            if (e.buttons === 0) {
+                allTiles[i].style.backgroundColor = 'black';
+            }
+        });
+    }
 }
-
 //Reset button clears black tiles.
 const resetButton = document.querySelector('.reset-button');
-
 function resetTiles() {
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].style.backgroundColor = 'white';
     }
 }
-
 resetButton.addEventListener('click', resetTiles);
 
-
+//Run code.
+colorTiles();
