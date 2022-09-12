@@ -1,1 +1,1 @@
-# etch-a-sketch
+Monday, September 12, 2022 - I am now starting the Etch A Sketch project near the end of the Javascript portion of the The Odin Project's Foundations track. I will be building a web app that functions as a sketching game. In doing so, I will be implementing all of the HTML, CSS, and Javascript skills I have learned thus far, as well as probably learning to do a few new things in the process.
