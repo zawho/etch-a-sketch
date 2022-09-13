@@ -10,8 +10,8 @@
     <div class="main-content">
         <div class="grid-container"></div>
         <div class="slider-container">
-            <input class="slider-input" type="range" min="1" max="100">
-            <output class="slider-output">50</output>
+            <input class="slider-input" type="range" min="1" max="100" oninput="sliderOutput.value=value + ' x ' + (sliderOutput.value=value)">
+            <output id=sliderOutput>50 x 50</output>
         </div>
         <button class="reset-button" type="button">reset</button>
     </div>
