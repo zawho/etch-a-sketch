@@ -1,16 +1,21 @@
 //Generate grid. 
 const gridContainer = document.querySelector('.grid-container');
 let docFragment = document.createDocumentFragment();
-for (let i = 0; i < 256; i++) {
-    const gridTile = document.createElement('div');
-    gridTile.classList.add('grid-tile');
-    docFragment.appendChild(gridTile);
+
+//test.
+function testFunc() {
+    for (let i = 0; i < 256; i++) {
+        const gridTile = document.createElement('div');
+        gridTile.classList.add('grid-tile');
+        docFragment.appendChild(gridTile);
+    }
+    gridContainer.appendChild(docFragment);
+    colorTiles();
 }
-gridContainer.appendChild(docFragment);
-const allTiles = document.querySelectorAll('.grid-tile');
 
 //Hover event loop.
 function colorTiles() {
+    const allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
             if (e.buttons === 1) {
@@ -24,6 +29,7 @@ function colorTiles() {
         });
     }
 }
+
 //Reset button clears black tiles.
 const resetButton = document.querySelector('.reset-button');
 function resetTiles() {
@@ -34,4 +40,4 @@ function resetTiles() {
 resetButton.addEventListener('click', resetTiles);
 
 //Run code.
-colorTiles();
+testFunc();
