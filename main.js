@@ -3,9 +3,12 @@ const gridContainer = document.querySelector('.grid-container');
 let docFragment = document.createDocumentFragment();
 
 //test.
-function testFunc() {
-    for (let i = 0; i < 256; i++) {
+function createTiles() {
+    numOfTiles = 4;
+    for (let i = 0; i < (numOfTiles * numOfTiles); i++) {
         const gridTile = document.createElement('div');
+        gridTile.style.height = `calc(100% / ${numOfTiles})`;
+        gridTile.style.width = `calc(100% / ${numOfTiles})`;
         gridTile.classList.add('grid-tile');
         docFragment.appendChild(gridTile);
     }
@@ -40,4 +43,4 @@ function resetTiles() {
 resetButton.addEventListener('click', resetTiles);
 
 //Run code.
-testFunc();
+createTiles();
