@@ -16,7 +16,6 @@ body {
     flex-wrap: wrap;
     height: 500px;
     width: 500px;
-    border: 0.5px solid black;
 }
 
 .grid-tile {
