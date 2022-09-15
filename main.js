@@ -1,6 +1,16 @@
 //Global variables.
 let allTiles;
 
+//Slider.
+const sliderInput = document.querySelector('.slider-input');
+const sliderOutput = document.querySelector('.slider-output');
+
+function getGridSize() {
+    sliderOutput.value = `${sliderInput.value} x ${sliderInput.value}`;
+}
+sliderInput.addEventListener('input', getGridSize);
+
+
 //Generate grid. 
 const gridContainer = document.querySelector('.grid-container');
 let docFragment = document.createDocumentFragment();
