@@ -12,12 +12,30 @@ const docFragment = document.createDocumentFragment();
 
 sliderInput.addEventListener('input', getGridSize);
 resetButton.addEventListener('click', resetTiles);
+colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
+randomButton.addEventListener('click', colorRandom);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse.
 function colorTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     tileColor = colorPicker.value;
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].addEventListener('mouseover', function(e) {
+            if (e.buttons === 1) {
+                allTiles[i].style.backgroundColor = tileColor;
+            }
+        });
+        allTiles[i].addEventListener('click', function() {
+                allTiles[i].style.backgroundColor = tileColor;
+        });
+    }
+}
+
+//Random color. Need to fix grid reset + randomize for every tile.
+function colorRandom() {
+    allTiles = document.querySelectorAll('.grid-tile');
+    tileColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
             if (e.buttons === 1) {
