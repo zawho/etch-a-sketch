@@ -32,18 +32,17 @@ function colorTiles() {
     }
 }
 
-//Random color. Need to fix grid reset + randomize for every tile.
+//Random color. Need to fix grid reset.
 function colorRandom() {
     allTiles = document.querySelectorAll('.grid-tile');
-    tileColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
             if (e.buttons === 1) {
-                allTiles[i].style.backgroundColor = tileColor;
+                allTiles[i].style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
             }
         });
         allTiles[i].addEventListener('click', function() {
-                allTiles[i].style.backgroundColor = tileColor;
+                allTiles[i].style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
         });
     }
 }
