@@ -6,6 +6,7 @@ const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
 const gridContainer = document.querySelector('.grid-container');
 const colorPicker = document.querySelector('.color-picker');
+const randomButton = document.querySelector('.random-button');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
