@@ -1,28 +1,30 @@
 let allTiles;
 let numOfTiles;
+let tileColor;
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
 const gridContainer = document.querySelector('.grid-container');
+const colorPicker = document.querySelector('.color-picker');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
 sliderInput.addEventListener('input', getGridSize);
 resetButton.addEventListener('click', resetTiles);
+colorPicker.addEventListener('input', colorTiles);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse.
 function colorTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
+    tileColor = colorPicker.value;
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
             if (e.buttons === 1) {
-                allTiles[i].style.backgroundColor = 'black';
+                allTiles[i].style.backgroundColor = tileColor;
             }
         });
-        allTiles[i].addEventListener('click', function(e) {
-            if (e.buttons === 0) {
-                allTiles[i].style.backgroundColor = 'black';
-            }
+        allTiles[i].addEventListener('click', function() {
+                allTiles[i].style.backgroundColor = tileColor;
         });
     }
 }
