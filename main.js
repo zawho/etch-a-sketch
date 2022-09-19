@@ -1,7 +1,7 @@
 let allTiles;
 let numOfTiles;
 let tileColor;
-let colorMode;
+let colorMode = 'standard';
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
@@ -49,6 +49,9 @@ function colorRandom() {
         });
     }
 }
+
+//Gradient color functionality initiated by the gradient button.
+
 
 //Generate grid. 
 function createTiles() {
