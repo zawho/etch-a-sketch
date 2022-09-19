@@ -8,6 +8,7 @@ const sliderOutput = document.querySelector('.slider-output');
 const gridContainer = document.querySelector('.grid-container');
 const colorPicker = document.querySelector('.color-picker');
 const randomButton = document.querySelector('.random-button');
+const shaderButton = document.querySelector('.shader-button');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
@@ -16,6 +17,7 @@ resetButton.addEventListener('click', resetTiles);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
 randomButton.addEventListener('click', colorRandom);
+shaderButton.addEventListener('click', shadeTiles);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
@@ -51,7 +53,10 @@ function colorRandom() {
 }
 
 //Gradient color functionality initiated by the gradient button.
-
+function shadeTiles() {
+    colorMode = 'shader';
+    //Gotta figure this out.
+}
 
 //Generate grid. 
 function createTiles() {
