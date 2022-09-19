@@ -1,6 +1,7 @@
 let allTiles;
 let numOfTiles;
 let tileColor;
+let colorMode;
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
@@ -16,8 +17,9 @@ colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
 randomButton.addEventListener('click', colorRandom);
 
-//Hover event loop that allows for coloring by clicking and dragging the mouse.
+//Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
+    colorMode = 'standard';
     allTiles = document.querySelectorAll('.grid-tile');
     tileColor = colorPicker.value;
     for (let i = 0; i < allTiles.length; i++) {
@@ -32,8 +34,9 @@ function colorTiles() {
     }
 }
 
-//Random color. Need to fix grid reset.
+//Random color functionality initiated by the random button.
 function colorRandom() {
+    colorMode = 'random';
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
@@ -58,7 +61,6 @@ function createTiles() {
         docFragment.appendChild(gridTile);
     }
     gridContainer.appendChild(docFragment);
-    colorTiles();
 }
 
 //Reset button clears black tiles.
@@ -69,17 +71,24 @@ function resetTiles() {
     }
 }
 
-//Clear grid.
+//Clear grid before creating new tiles.
 function clearGrid() {
     gridContainer.innerText = '';
 }
 
-//Slider for user input to determine grid size.
+//Slider function for user input to determine grid size and generate new grid.
 function getGridSize() {
     sliderOutput.value = `${sliderInput.value} x ${sliderInput.value}`;
     resetTiles();
     clearGrid();
     createTiles();
+    if (colorMode === 'standard') {
+        colorTiles();
+    }
+    else if (colorMode === 'random') {
+        colorRandom();
+    }
 }
 
 createTiles();
+colorTiles();
