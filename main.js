@@ -58,15 +58,17 @@ function colorRandom() {
 function shadeTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
-        allTiles[i].addEventListener('mouseover', function(e) {
+        function shadeMouseOver(e) {
             if (e.buttons === 1) {
                 allTiles[i].style.opacity -= '-0.1';
             }
-        });
-        allTiles[i].addEventListener('click', function() {
+        };
+        function shadeClick() {
             allTiles[i].style.opacity = '0';
             allTiles[i].style.opacity -= '-0.1';
-        });
+        };
+        allTiles[i].addEventListener('mouseover', shadeMouseOver);
+        allTiles[i].addEventListener('click', shadeClick);
     }
 }
 
