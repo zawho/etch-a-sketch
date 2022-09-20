@@ -2,6 +2,7 @@ let allTiles;
 let numOfTiles;
 let tileColor;
 let colorMode = 'standard';
+let shaderMode = 'off';
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
@@ -9,6 +10,7 @@ const gridContainer = document.querySelector('.grid-container');
 const colorPicker = document.querySelector('.color-picker');
 const randomButton = document.querySelector('.random-button');
 const shaderButton = document.querySelector('.shader-button');
+const shaderSwitch = document.querySelector('.shader-switch');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
@@ -17,7 +19,7 @@ resetButton.addEventListener('click', resetTiles);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
 randomButton.addEventListener('click', colorRandom);
-shaderButton.addEventListener('click', shadeTiles);
+shaderButton.addEventListener('click', activateShader);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
@@ -54,7 +56,6 @@ function colorRandom() {
 
 //Gradient color functionality initiated by the gradient button.
 function shadeTiles() {
-    colorMode = 'shader';
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', function(e) {
@@ -67,6 +68,18 @@ function shadeTiles() {
             allTiles[i].style.opacity -= '-0.1';
         });
     }
+}
+
+// On/off switch for shader.
+function activateShader() {
+    if (shaderMode === 'off') {
+        shaderMode = 'on';
+        shaderSwitch.innerText = 'ON'
+    } else if (shaderMode === 'on') {
+        shaderMode = 'off';
+        shaderSwitch.innerText = 'OFF';
+    }
+    shadeTiles();
 }
 
 //Generate grid. 
@@ -105,9 +118,6 @@ function getGridSize() {
         colorTiles();
     } else if (colorMode === 'random') {
         colorRandom();
-    } else if (colorMode === 'shader') {
-        colorTiles();
-        shadeTiles();
     }
 }
 
