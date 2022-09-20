@@ -21,3 +21,21 @@ body {
 .grid-tile {
     border: 0.5px solid black;
 }
+
+.all-controls {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.all-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 90px;
+    gap: 10px;
+}
+
+.shader-container {
+    display: flex;
+    justify-content: space-between;
+}

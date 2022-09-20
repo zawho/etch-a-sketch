@@ -9,17 +9,26 @@
 <body>
     <div class="main-content">
         <div class="grid-container"></div>
-        <div class="slider-container">
-            <input class="slider-input" type="range" min="1" max="64" value="32">
-            <output class=slider-output>32 x 32</output>
+        <div class="all-controls">
+            <div class="slider-n-picker">
+                <div class="slider-container">
+                    <input class="slider-input" type="range" min="1" max="64" value="32">
+                    <output class=slider-output>32 x 32</output>
+                </div>
+                <div class="picker-container">
+                    <div>Select a color</div>
+                    <input class="color-picker" type="color">
+                </div>
+            </div>
+            <div class="all-buttons">
+                <div class="shader-container">
+                    <button class="shader-button" type="button">shader</button>
+                    <div class="shader-switch">Off</div>
+                </div>
+                <button class="random-button" type="button">random</button>
+                <button class="reset-button" type="button">reset</button>
+            </div>
         </div>
-        <div class="picker-container">
-            <div>Select a color</div>
-            <input class="color-picker" type="color">
-        </div>
-        <button class="shader-button" type="button">shader</button>
-        <button class="random-button" type="button">random</button>
-        <button class="reset-button" type="button">reset</button>
     </div>
 </body>
 </html>
