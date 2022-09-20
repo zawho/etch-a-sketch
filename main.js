@@ -101,7 +101,6 @@ function resetTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].style.backgroundColor = 'white';
-        allTiles[i].style.opacity = '1';
     }
 }
 
