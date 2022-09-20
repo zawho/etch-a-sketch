@@ -55,7 +55,18 @@ function colorRandom() {
 //Gradient color functionality initiated by the gradient button.
 function shadeTiles() {
     colorMode = 'shader';
-    //Gotta figure this out.
+    allTiles = document.querySelectorAll('.grid-tile');
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].addEventListener('mouseover', function(e) {
+            if (e.buttons === 1) {
+                allTiles[i].style.opacity -= '-0.1';
+            }
+        });
+        allTiles[i].addEventListener('click', function() {
+            allTiles[i].style.opacity = '0';
+            allTiles[i].style.opacity -= '-0.1';
+        });
+    }
 }
 
 //Generate grid. 
@@ -92,9 +103,11 @@ function getGridSize() {
     createTiles();
     if (colorMode === 'standard') {
         colorTiles();
-    }
-    else if (colorMode === 'random') {
+    } else if (colorMode === 'random') {
         colorRandom();
+    } else if (colorMode === 'shader') {
+        colorTiles();
+        shadeTiles();
     }
 }
 
