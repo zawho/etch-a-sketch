@@ -64,7 +64,6 @@ function shadeTiles() {
             }
         };
         function shadeClick() {
-            allTiles[i].style.opacity = '0';
             allTiles[i].style.opacity -= '-0.1';
         };
         allTiles[i].addEventListener('mouseover', shadeMouseOver);
@@ -76,12 +75,12 @@ function shadeTiles() {
 function activateShader() {
     if (shaderMode === 'off') {
         shaderMode = 'on';
-        shaderSwitch.innerText = 'ON'
+        shaderSwitch.innerText = 'ON';
+        shadeTiles();
     } else if (shaderMode === 'on') {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
     }
-    shadeTiles();
 }
 
 //Generate grid. 
@@ -102,6 +101,7 @@ function resetTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].style.backgroundColor = 'white';
+        allTiles[i].style.opacity = '1';
     }
 }
 
