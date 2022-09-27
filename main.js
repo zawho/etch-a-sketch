@@ -61,10 +61,13 @@ function shadeTiles() {
         function shadeMouseOver(e) {
             if (e.buttons === 1) {
                 allTiles[i].style.opacity -= '-0.1';
+                console.log(allTiles[i].style.opacity);
             }
         };
         function shadeClick() {
+            allTiles[i].style.opacity = '0';
             allTiles[i].style.opacity -= '-0.1';
+            console.log(allTiles[i].style.opacity);
         };
         allTiles[i].addEventListener('mouseover', shadeMouseOver);
         allTiles[i].addEventListener('click', shadeClick);
@@ -101,6 +104,7 @@ function resetTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].style.backgroundColor = 'white';
+        allTiles[i].style.opacity = '';
     }
 }
 
