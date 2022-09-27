@@ -31,11 +31,11 @@ body {
 .all-buttons {
     display: flex;
     flex-direction: column;
-    width: 90px;
+    width: 95px;
     gap: 10px;
 }
 
-.shader-container {
+.shader-container, .random-container {
     display: flex;
     justify-content: space-between;
 }

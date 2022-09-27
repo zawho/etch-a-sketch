@@ -1,14 +1,15 @@
 let allTiles;
 let numOfTiles;
 let tileColor;
-let colorMode = 'standard';
 let shaderMode = 'off';
+let randomMode = 'off';
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
 const gridContainer = document.querySelector('.grid-container');
 const colorPicker = document.querySelector('.color-picker');
 const randomButton = document.querySelector('.random-button');
+const randomSwitch = document.querySelector('.random-switch');
 const shaderButton = document.querySelector('.shader-button');
 const shaderSwitch = document.querySelector('.shader-switch');
 const resetButton = document.querySelector('.reset-button');
@@ -17,14 +18,14 @@ const docFragment = document.createDocumentFragment();
 sliderInput.addEventListener('input', getGridSize);
 resetButton.addEventListener('click', resetTiles);
 resetButton.addEventListener('click', resetShader);
+resetButton.addEventListener('click', resetRand);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
-randomButton.addEventListener('click', colorRandom);
-shaderButton.addEventListener('click', activateShader);
+randomButton.addEventListener('click', switchRand);
+shaderButton.addEventListener('click', switchShader);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
-    colorMode = 'standard';
     allTiles = document.querySelectorAll('.grid-tile');
     tileColor = colorPicker.value;
     for (let i = 0; i < allTiles.length; i++) {
@@ -41,17 +42,43 @@ function colorTiles() {
 
 //Random color functionality initiated by the random button.
 function colorRandom() {
-    colorMode = 'random';
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
-        allTiles[i].addEventListener('mouseover', function(e) {
-            if (e.buttons === 1) {
-                allTiles[i].style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
-            }
-        });
-        allTiles[i].addEventListener('click', function() {
-                allTiles[i].style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
-        });
+        allTiles[i].addEventListener('mouseover', randMouseOver);
+        allTiles[i].addEventListener('click', randClick);
+    }
+}
+
+//Random color event functions.
+function randMouseOver(e) {
+    if (e.buttons === 1) {
+        e.target.style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
+    }
+}
+
+function randClick(e) {
+    e.target.style.backgroundColor = '#'+ Math.floor(Math.random()*16777215).toString(16);
+}
+
+//Remove random event listeners.
+function turnOffRand() {
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].removeEventListener('mouseover', randMouseOver);
+        allTiles[i].removeEventListener('click', randClick);
+    }
+    colorTiles();
+}
+
+//On/off switch for random.
+function switchRand() {
+    if (randomMode === 'off') {
+        randomMode = 'on';
+        randomSwitch.innerText = 'ON';
+        colorRandom();
+    } else if (randomMode === 'on') {
+        randomMode = 'off';
+        randomSwitch.innerText = 'OFF';
+        turnOffRand();
     }
 }
 
@@ -77,16 +104,6 @@ function shadeClick(e) {
     e.target.style.opacity -= '-0.1';
 }
 
-//Remove shader event listeners and reset opacity.
-function TurnOffShader() {
-    for (let i = 0; i < allTiles.length; i++) {
-        allTiles[i].removeEventListener('mouseover', shadeMouseOver);
-        allTiles[i].removeEventListener('click', shadeClick);
-        allTiles[i].addEventListener('mouseover', resetOpacityMouseover);
-        allTiles[i].addEventListener('click', resetOpacityClick);
-    }
-}
-
 //Reset opacity event functions.
 function resetOpacityMouseover(e) {
     if (e.buttons === 1) {
@@ -98,16 +115,26 @@ function resetOpacityClick(e) {
     e.target.style.opacity = '';
 }
 
+//Remove shader event listeners and reset opacity.
+function turnOffShader() {
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].removeEventListener('mouseover', shadeMouseOver);
+        allTiles[i].removeEventListener('click', shadeClick);
+        allTiles[i].addEventListener('mouseover', resetOpacityMouseover);
+        allTiles[i].addEventListener('click', resetOpacityClick);
+    }
+}
+
 // On/off switch for shader.
-function activateShader() {
+function switchShader() {
     if (shaderMode === 'off') {
         shaderMode = 'on';
-        shadeTiles();
         shaderSwitch.innerText = 'ON';
+        shadeTiles();
     } else if (shaderMode === 'on') {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
-        TurnOffShader();
+        turnOffShader();
     }
 }
 
@@ -133,11 +160,18 @@ function resetTiles() {
     }
 }
 
+//Reset button turns off random.
+function resetRand() {
+    randomMode = 'off';
+    randomSwitch.innerText = 'OFF';
+    turnOffRand();
+}
+
 //Reset button turns off shader.
 function resetShader() {
     shaderMode = 'off';
     shaderSwitch.innerText = 'OFF';
-    TurnOffShader();
+    turnOffShader();
 }
 
 //Clear grid before creating new tiles.
@@ -151,9 +185,10 @@ function getGridSize() {
     resetTiles();
     clearGrid();
     createTiles();
-    if (colorMode === 'standard') {
+    if (randomMode === 'off') {
         colorTiles();
-    } else if (colorMode === 'random') {
+    }
+    if (randomMode === 'on') {
         colorRandom();
     } 
     if (shaderMode === 'on') {
