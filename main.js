@@ -16,6 +16,7 @@ const docFragment = document.createDocumentFragment();
 
 sliderInput.addEventListener('input', getGridSize);
 resetButton.addEventListener('click', resetTiles);
+resetButton.addEventListener('click', resetShader);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
 randomButton.addEventListener('click', colorRandom);
@@ -69,13 +70,11 @@ function shadeTiles() {
 function shadeMouseOver(e) {
     if (e.buttons === 1) {
         e.target.style.opacity -= '-0.1';
-        console.log(e.target.style.opacity);
     }
 }
 
 function shadeClick(e) {
     e.target.style.opacity -= '-0.1';
-    console.log(e.target.style.opacity);
 }
 
 //Remove shader event listeners and reset opacity.
@@ -134,6 +133,13 @@ function resetTiles() {
     }
 }
 
+//Reset button turns off shader.
+function resetShader() {
+    shaderMode = 'off';
+    shaderSwitch.innerText = 'OFF';
+    TurnOffShader();
+}
+
 //Clear grid before creating new tiles.
 function clearGrid() {
     gridContainer.innerText = '';
@@ -149,6 +155,9 @@ function getGridSize() {
         colorTiles();
     } else if (colorMode === 'random') {
         colorRandom();
+    } 
+    if (shaderMode === 'on') {
+        shadeTiles();
     }
 }
 
