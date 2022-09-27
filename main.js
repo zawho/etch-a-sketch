@@ -54,12 +54,14 @@ function colorRandom() {
     }
 }
 
-//Gradient color functionality initiated by the gradient button.
+//Shader functionality initiated by the shader button.
 function shadeTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
         allTiles[i].addEventListener('mouseover', shadeMouseOver);
         allTiles[i].addEventListener('click', shadeClick);
+        allTiles[i].removeEventListener('mouseover', resetOpacityMouseover);
+        allTiles[i].removeEventListener('click', resetOpacityClick);
     }
 }
 
@@ -70,22 +72,44 @@ function shadeMouseOver(e) {
         console.log(e.target.style.opacity);
     }
 }
+
 function shadeClick(e) {
-    e.target.style.opacity = '0';
     e.target.style.opacity -= '-0.1';
     console.log(e.target.style.opacity);
+}
+
+//Remove shader event listeners and reset opacity.
+function TurnOffShader() {
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].removeEventListener('mouseover', shadeMouseOver);
+        allTiles[i].removeEventListener('click', shadeClick);
+        allTiles[i].addEventListener('mouseover', resetOpacityMouseover);
+        allTiles[i].addEventListener('click', resetOpacityClick);
+    }
+}
+
+//Reset opacity event functions.
+function resetOpacityMouseover(e) {
+    if (e.buttons === 1) {
+        e.target.style.opacity = '';
+    }
+}
+
+function resetOpacityClick(e) {
+    e.target.style.opacity = '';
 }
 
 // On/off switch for shader.
 function activateShader() {
     if (shaderMode === 'off') {
         shaderMode = 'on';
+        shadeTiles();
         shaderSwitch.innerText = 'ON';
     } else if (shaderMode === 'on') {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
+        TurnOffShader();
     }
-    shadeTiles();
 }
 
 //Generate grid. 
