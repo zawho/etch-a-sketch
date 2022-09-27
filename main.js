@@ -58,20 +58,22 @@ function colorRandom() {
 function shadeTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
-        function shadeMouseOver(e) {
-            if (e.buttons === 1) {
-                allTiles[i].style.opacity -= '-0.1';
-                console.log(allTiles[i].style.opacity);
-            }
-        };
-        function shadeClick() {
-            allTiles[i].style.opacity = '0';
-            allTiles[i].style.opacity -= '-0.1';
-            console.log(allTiles[i].style.opacity);
-        };
         allTiles[i].addEventListener('mouseover', shadeMouseOver);
         allTiles[i].addEventListener('click', shadeClick);
     }
+}
+
+//Shader event functions.
+function shadeMouseOver(e) {
+    if (e.buttons === 1) {
+        e.target.style.opacity -= '-0.1';
+        console.log(e.target.style.opacity);
+    }
+}
+function shadeClick(e) {
+    e.target.style.opacity = '0';
+    e.target.style.opacity -= '-0.1';
+    console.log(e.target.style.opacity);
 }
 
 // On/off switch for shader.
@@ -79,11 +81,11 @@ function activateShader() {
     if (shaderMode === 'off') {
         shaderMode = 'on';
         shaderSwitch.innerText = 'ON';
-        shadeTiles();
     } else if (shaderMode === 'on') {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
     }
+    shadeTiles();
 }
 
 //Generate grid. 
