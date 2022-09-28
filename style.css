@@ -5,6 +5,10 @@ body {
     margin: 50px 0px;
 }
 
+button {
+    width: 60px;
+}
+
 .main-content {
     display: flex;
     flex-direction: column;
@@ -35,7 +39,7 @@ body {
     gap: 10px;
 }
 
-.shader-container, .random-container {
+.shader-container, .random-container, .eraser-container {
     display: flex;
     justify-content: space-between;
 }

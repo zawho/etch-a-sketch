@@ -151,7 +151,7 @@ function createTiles() {
     gridContainer.appendChild(docFragment);
 }
 
-//Reset button clears black tiles.
+//Reset button clears color tiles.
 function resetTiles() {
     allTiles = document.querySelectorAll('.grid-tile');
     for (let i = 0; i < allTiles.length; i++) {
