@@ -3,6 +3,7 @@ let numOfTiles;
 let tileColor;
 let shaderMode = 'off';
 let randomMode = 'off';
+let eraseMode = 'off';
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
@@ -12,6 +13,8 @@ const randomButton = document.querySelector('.random-button');
 const randomSwitch = document.querySelector('.random-switch');
 const shaderButton = document.querySelector('.shader-button');
 const shaderSwitch = document.querySelector('.shader-switch');
+const eraserButton = document.querySelector('.eraser-button');
+const eraserSwitch = document.querySelector('.eraser-switch');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
@@ -19,10 +22,12 @@ sliderInput.addEventListener('input', getGridSize);
 resetButton.addEventListener('click', resetTiles);
 resetButton.addEventListener('click', resetShader);
 resetButton.addEventListener('click', resetRand);
+resetButton.addEventListener('click', resetEraser);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
 randomButton.addEventListener('click', switchRand);
 shaderButton.addEventListener('click', switchShader);
+eraserButton.addEventListener('click', switchEraser);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
@@ -125,7 +130,7 @@ function turnOffShader() {
     }
 }
 
-// On/off switch for shader.
+//On/off switch for shader.
 function switchShader() {
     if (shaderMode === 'off') {
         shaderMode = 'on';
@@ -135,6 +140,49 @@ function switchShader() {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
         turnOffShader();
+    }
+}
+
+//Eraser functionality initiated by the eraser button.
+function eraseTiles() {
+    allTiles = document.querySelectorAll('.grid-tile');
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].addEventListener('mouseover', eraseMouseOver);
+        allTiles[i].addEventListener('click', eraseClick);
+    }
+}
+
+//Eraser event functions.
+function eraseMouseOver(e) {
+    if (e.buttons === 1) {
+        e.target.style.backgroundColor = 'white';
+    }
+}
+
+function eraseClick(e) {
+    e.target.style.backgroundColor = 'white';
+}
+
+//Remove eraser event listeners.
+function turnOffEraser() {
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].removeEventListener('mouseover', eraseMouseOver);
+        allTiles[i].removeEventListener('click', eraseClick);
+    }
+    colorTiles();
+}
+
+
+//On/off swutch for eraser.
+function switchEraser() {
+    if (eraseMode === 'off') {
+        eraseMode = 'on';
+        eraserSwitch.innerText = 'ON';
+        eraseTiles();
+    } else if (eraseMode === 'on') {
+        eraseMode = 'off';
+        eraserSwitch.innerText = 'OFF';
+        turnOffEraser();
     }
 }
 
@@ -174,6 +222,13 @@ function resetShader() {
     turnOffShader();
 }
 
+//Reset button turns off eraser.
+function resetEraser() {
+    eraseMode = 'off';
+    eraserSwitch.innerText = 'OFF';
+    turnOffEraser();
+}
+
 //Clear grid before creating new tiles.
 function clearGrid() {
     gridContainer.innerText = '';
@@ -193,6 +248,10 @@ function getGridSize() {
     } 
     if (shaderMode === 'on') {
         shadeTiles();
+    }
+    if (eraseMode === 'on') {
+        eraseMode = 'off';
+        eraserSwitch.innerText = 'OFF';
     }
 }
 
