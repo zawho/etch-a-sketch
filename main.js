@@ -71,7 +71,11 @@ function turnOffRand() {
         allTiles[i].removeEventListener('mouseover', randMouseOver);
         allTiles[i].removeEventListener('click', randClick);
     }
-    colorTiles();
+    if (eraseMode === 'on') {
+        eraseTiles();
+    } else {
+        colorTiles();
+    }
 }
 
 //On/off switch for random.
@@ -80,6 +84,9 @@ function switchRand() {
         randomMode = 'on';
         randomSwitch.innerText = 'ON';
         colorRandom();
+        if (eraseMode === 'on') {
+            resetEraser();
+        }
     } else if (randomMode === 'on') {
         randomMode = 'off';
         randomSwitch.innerText = 'OFF';
@@ -169,7 +176,11 @@ function turnOffEraser() {
         allTiles[i].removeEventListener('mouseover', eraseMouseOver);
         allTiles[i].removeEventListener('click', eraseClick);
     }
-    colorTiles();
+    if (randomMode === 'on') {
+        colorRandom();
+    } else { 
+        colorTiles();
+    }
 }
 
 
@@ -179,6 +190,12 @@ function switchEraser() {
         eraseMode = 'on';
         eraserSwitch.innerText = 'ON';
         eraseTiles();
+        if (shaderMode === 'on') {
+            resetShader();
+        }
+        if (randomMode === 'on') {
+            resetRand();
+        }
     } else if (eraseMode === 'on') {
         eraseMode = 'off';
         eraserSwitch.innerText = 'OFF';
