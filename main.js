@@ -9,6 +9,7 @@ const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
 const gridContainer = document.querySelector('.grid-container');
 const colorPicker = document.querySelector('.color-picker');
+const backgroundButton = document.querySelector('.background-button');
 const randomButton = document.querySelector('.random-button');
 const randomSwitch = document.querySelector('.random-switch');
 const shaderButton = document.querySelector('.shader-button');
@@ -25,6 +26,7 @@ resetButton.addEventListener('click', resetRand);
 resetButton.addEventListener('click', resetEraser);
 colorPicker.addEventListener('click', colorTiles);
 colorPicker.addEventListener('input', colorTiles);
+backgroundButton.addEventListener('click', colorAllTiles);
 randomButton.addEventListener('click', switchRand);
 shaderButton.addEventListener('click', switchShader);
 eraserButton.addEventListener('click', switchEraser);
@@ -44,6 +46,16 @@ function colorTiles() {
         });
     }
 }
+
+//Background color fill functionality for all tiles.
+function colorAllTiles() {
+    allTiles = document.querySelectorAll('.grid-tile');
+    tileColor = colorPicker.value;
+    for (let i = 0; i < allTiles.length; i++) {
+        allTiles[i].style.backgroundColor = tileColor;
+    }
+}
+
 
 //Random color functionality initiated by the random button.
 function colorRandom() {
