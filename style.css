@@ -5,7 +5,7 @@ body {
     align-items: center;
     margin: 0px;
     height: 100%;
-    background-image: linear-gradient(rgb(184, 13, 13), rgb(251, 225, 29));
+    background-image: linear-gradient(rgb(34, 11, 66), rgb(122, 170, 131));
     background-repeat: no-repeat;
     background-attachment: fixed;
     font-family: 'Aladin', sans-serif;
@@ -90,7 +90,7 @@ button {
 .color-picker {
     appearance: none;
     background: none;
-    border: 0;
+    border: none;
     padding: 0;
     width: 100px;
     height: 100px;
