@@ -101,6 +101,11 @@ button {
     border-radius: 10%;
 }
 
+::-moz-color-swatch {
+    border-color: transparent;
+    border-radius: 10%;
+}
+
 .shader-container, .random-container, .eraser-container {
     display: flex;
     justify-content: space-between;
