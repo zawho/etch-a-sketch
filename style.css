@@ -1,18 +1,38 @@
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 50px 0px;
+    margin: 0px;
+    height: 100%;
+    background-image: linear-gradient(rgb(184, 13, 13), rgb(251, 225, 29));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Aladin', sans-serif;
+    font-style: italic;
+    color: white;
+}
+
+h1 {
+    font-style: normal;
+    font-size: 60px;
 }
 
 button {
-    width: 60px;
+    width: 85px;
+    font-family: 'Aladin', sans-serif;
+    color: white;
+    background-color: rgba(33, 33, 33, 0.924);
+    border: none;
+    border-radius: 10px;
+    padding: 3px;
 }
 
 .main-content {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .grid-container {
@@ -20,32 +40,69 @@ button {
     flex-wrap: wrap;
     height: 500px;
     width: 500px;
-    border: 0.5px solid gray;
+    background-color: white;
+    margin: 0px 10px;
 }
 
-.all-controls {
+.grid-n-slider {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.slider-input {
+    appearance: none;
+    width: 75%;
+    background-image: linear-gradient(to right, rgb(122, 170, 131), rgb(34, 11, 66));
+    border-radius: 50%;
+}
+
+.slider-input::-webkit-slider-thumb {
+    appearance: none;
+    background-color: rgb(119, 17, 17);
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+}
+
+.slider-output {
+    font-size: 25px;
 }
 
 .all-buttons {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 95px;
-    gap: 10px;
+    gap: 50px;
 }
 
 .picker-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    gap: 20px;
+    font-size: 20px;
+    margin-bottom: 250px;
 }
 
-.background-button {
-    width: 90px;
+.color-picker {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    width: 100px;
+    height: 100px;
+}
+
+::-webkit-color-swatch {
+    border-color: transparent;
+    border-radius: 10%;
 }
 
 .shader-container, .random-container, .eraser-container {
     display: flex;
     justify-content: space-between;
+    width: 115px;
 }

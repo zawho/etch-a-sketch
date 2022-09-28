@@ -4,38 +4,42 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
-    <title>etch a sketch</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aladin&display=swap" rel="stylesheet">
+    <title>DRAW YOUR DREAMS</title>
 </head>
 <body>
     <div class="main-content">
-        <div class="grid-container"></div>
-        <div class="all-controls">
-            <div class="slider-n-picker">
-                <div class="slider-container">
-                    <input class="slider-input" type="range" min="1" max="64" value="32">
-                    <output class=slider-output>32 x 32</output>
-                </div>
-                <div class="picker-container">
-                    <div>select a color</div>
-                    <input class="color-picker" type="color">
-                    <button class="background-button" type="button">background</button>
-                </div>
+        <div class="picker-container">
+            <div>SELECT A COLOR</div>
+            <input class="color-picker" type="color">
+        </div>
+        <div class="grid-n-slider">
+            <h1>DRAW YOUR DREAMS</h1>
+            <div class="grid-container"></div>
+            <div class="slider-container">
+        </div>
+            <input class="slider-input" type="range" min="1" max="64" value="32">
+            <output class=slider-output>32 x 32</output>
+        </div>
+        <div class="all-buttons">
+            <div class="shader-container">
+                <button class="shader-button" type="button">SHADER</button>
+                <div class="shader-switch">OFF</div>
             </div>
-            <div class="all-buttons">
-                <div class="shader-container">
-                    <button class="shader-button" type="button">shader</button>
-                    <div class="shader-switch">OFF</div>
-                </div>
-                <div class="random-container">
-                    <button class="random-button" type="button">random</button>
-                    <div class="random-switch">OFF</div>
-                </div>
-                <div class="eraser-container">
-                    <button class="eraser-button" type="button">eraser</button>
-                    <div class="eraser-switch">OFF</div>
-                </div>
-                <button class="reset-button" type="button">reset</button>
+            <div class="random-container">
+                <button class="random-button" type="button">RANDOM</button>
+                <div class="random-switch">OFF</div>
             </div>
+            <div class="eraser-container">
+                <button class="eraser-button" type="button">ERASER</button>
+                <div class="eraser-switch">OFF</div>
+            </div>
+            <button class="background-button" type="button">BACKGROUND</button>
+            <button class="reset-button" type="button">RESET</button>
         </div>
     </div>
 </body>
