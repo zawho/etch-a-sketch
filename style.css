@@ -39,6 +39,16 @@ button {
     gap: 10px;
 }
 
+.picker-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.background-button {
+    width: 90px;
+}
+
 .shader-container, .random-container, .eraser-container {
     display: flex;
     justify-content: space-between;
