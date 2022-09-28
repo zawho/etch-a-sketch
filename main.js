@@ -221,9 +221,8 @@ function createTiles() {
     numOfTiles = sliderInput.value;
     for (let i = 0; i < (numOfTiles * numOfTiles); i++) {
         const gridTile = document.createElement('div');
-        gridTile.style.border = '0.5px solid black';
-        gridTile.style.height = `calc((100% / ${numOfTiles}) - 1px)`;
-        gridTile.style.width = `calc((100% / ${numOfTiles}) - 1px)`;
+        gridTile.style.height = `calc(100% / ${numOfTiles}`;
+        gridTile.style.width = `calc(100% / ${numOfTiles}`;
         gridTile.classList.add('grid-tile');
         docFragment.appendChild(gridTile);
     }
