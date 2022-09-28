@@ -20,9 +20,6 @@ button {
     flex-wrap: wrap;
     height: 500px;
     width: 500px;
-}
-
-.grid-tile {
     border: 0.5px solid black;
 }
 
