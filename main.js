@@ -154,6 +154,9 @@ function switchShader() {
         shaderMode = 'on';
         shaderSwitch.innerText = 'ON';
         shadeTiles();
+        if (eraseMode === 'on') {
+            resetEraser();
+        }
     } else if (shaderMode === 'on') {
         shaderMode = 'off';
         shaderSwitch.innerText = 'OFF';
