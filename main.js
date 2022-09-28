@@ -4,6 +4,7 @@ let tileColor;
 let shaderMode = 'off';
 let randomMode = 'off';
 let eraseMode = 'off';
+let gridMode = 'on';
 
 const sliderInput = document.querySelector('.slider-input');
 const sliderOutput = document.querySelector('.slider-output');
@@ -16,6 +17,8 @@ const shaderButton = document.querySelector('.shader-button');
 const shaderSwitch = document.querySelector('.shader-switch');
 const eraserButton = document.querySelector('.eraser-button');
 const eraserSwitch = document.querySelector('.eraser-switch');
+const gridButton = document.querySelector('.grid-button');
+const gridSwitch = document.querySelector('.grid-switch');
 const resetButton = document.querySelector('.reset-button');
 const docFragment = document.createDocumentFragment();
 
@@ -30,6 +33,7 @@ backgroundButton.addEventListener('click', colorAllTiles);
 randomButton.addEventListener('click', switchRand);
 shaderButton.addEventListener('click', switchShader);
 eraserButton.addEventListener('click', switchEraser);
+gridButton.addEventListener('click', switchGrid);
 
 //Hover event loop that allows for coloring by clicking and dragging the mouse. Color selected via RGB picker.
 function colorTiles() {
@@ -220,12 +224,47 @@ function createTiles() {
     numOfTiles = sliderInput.value;
     for (let i = 0; i < (numOfTiles * numOfTiles); i++) {
         const gridTile = document.createElement('div');
-        gridTile.style.height = `calc((100% / ${numOfTiles})`;
-        gridTile.style.width = `calc((100% / ${numOfTiles})`;
+        if (gridMode === 'on') {
+            clearGrid();
+            gridContainer.style.border = 'none';
+            gridTile.style.border = '0.5px solid black';
+            gridTile.style.height = `calc((100% / ${numOfTiles}) - 1px)`;
+            gridTile.style.width = `calc((100% / ${numOfTiles}) - 1px)`;
+        } else if (gridMode === 'off') {
+            clearGrid();
+            gridContainer.style.border = '0.5px solid black';
+            gridTile.style.border = 'none';
+            gridTile.style.height = `calc(100% / ${numOfTiles})`;
+            gridTile.style.width = `calc(100% / ${numOfTiles})`;
+        }
         gridTile.classList.add('grid-tile');
         docFragment.appendChild(gridTile);
     }
     gridContainer.appendChild(docFragment);
+}
+
+//Grid button switch.
+function switchGrid(){
+    if (gridMode === 'on') {
+        gridMode = 'off';
+        gridSwitch.innerText = 'OFF';
+        createTiles();
+    } else if (gridMode === 'off') {
+        gridMode = 'on';
+        gridSwitch.innerText = 'ON';
+        createTiles();
+    }
+    if (randomMode === 'on') {
+        colorRandom();
+    } else {
+        colorTiles();
+    }
+    if (shaderMode === 'on') {
+        shadeTiles();
+    }
+    if (eraseMode === 'on') {
+        eraseTiles();
+    }
 }
 
 //Reset button clears color tiles.
